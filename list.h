@@ -780,4 +780,18 @@ static inline void hlist_move_list(struct hlist_head *old,
          pos && ({ n = pos->member.next; 1; });            \
          pos = hlist_entry_safe(n, typeof(*pos), member))
 
+/*
+ * a helper function to get list size
+ */
+static inline int list_size(struct list_head *head) {
+    int size = 0;
+    struct list_head *pos;
+
+    list_for_each(pos, head) {
+        ++size;
+    }
+
+    return size;
+}
+
 #endif // LIST_H_
